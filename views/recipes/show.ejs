@@ -1,0 +1,14 @@
+<% layout('layouts/boilerplate') %>
+
+<h1><%= recipe.title %></h1>
+<h2><%= recipe.style %></h2>
+<img src="<%= recipe.image %>" alt="">
+<p>
+    <form action="/recipes/<%=recipe._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+</p>
+<footer>
+    <a href="/recipes/<%=recipe._id%>/edit">Edit</a>
+    <a href="/recipes">All Recipes</a>
+</footer>
