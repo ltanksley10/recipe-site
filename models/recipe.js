@@ -10,6 +10,10 @@ const RecipeSchema = new Schema({
     duration: Number,
     keto_friendly: String, 
     instructions: String,
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId, 
