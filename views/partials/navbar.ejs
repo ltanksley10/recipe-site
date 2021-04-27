@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-danger">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/recipes">Foodiegram</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">Foodiegram</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -12,6 +12,21 @@
         <li class="nav-item">
           <a class="nav-link" href="/recipes/new">Add New Recipe</a>
         </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if(!currentUser) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <% } else { %>
+        <p class="mt-2 mr-2 text-light">Logged in as <%= currentUser.username %>!</p>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <% } %>
       </ul>
     </div>
   </div>

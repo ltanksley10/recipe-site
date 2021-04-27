@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();   
+}
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -10,6 +12,9 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const helmet = require('helmet');
+
+const mongoSanitize = require('express-mongo-sanitize');
 
 const userRoutes = require('./routes/users');
 const recipes = require('./routes/recipes');
@@ -45,13 +50,55 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//sanitize
+app.use(mongoSanitize());
+
+//helmet
+app.use(helmet());
+const scriptSrcUrls = [
+  "https://cdn.jsdelivr.net/",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://kit.fontawesome.com/",
+  "https://code.jquery.com/",
+  "https://cdnjs.cloudflare.com/",
+];
+const styleSrcUrls = [
+  "https://cdn.jsdelivr.net/",
+  "https://kit-free.fontawesome.com/",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://fonts.googleapis.com/",
+  "https://use.fontawesome.cdn/",
+];
+const connectSrcUrls = [];
+const fontSrcUrls = [];
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: [],
+        connectSrc: ["'self'", ...connectSrcUrls],
+        scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+        styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+        workerSrc: ["'self'", "blob:"],
+        objectSrc: [],
+        imgSrc: [
+            "'self'",
+            "blob:",
+            "data:",
+            "https://res.cloudinary.com/YOURNAME/",
+            "https://images.unsplash.com/"
+        ],
+        fontSrc: ["'self'", ...fontSrcUrls],
+    },
+}));
+
 //cookies
 const sessionConfig = {
+    name: 'sesh',
     secret: 'thisshouldbeabettersecret',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }

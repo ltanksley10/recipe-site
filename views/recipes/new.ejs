@@ -5,35 +5,37 @@
     <div class="container col-lg-9 mb-5">
         <div class="card shadow border-0">
             <div class="card-body">
-                <form action="/recipes" method="POST">
+                <form action="/recipes" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-sm-12 mb-3">
-                            <label class="form-label" for="image">Image</label>
-                            <input class="form-control border-0 shadow" type="text" id="image" name="recipe[image]" placeholder="URL" required>
+                        <div class="col-sm-12 input-group mb-3">
+                          <div class="custom-file shadow">
+                            <input type="file" class="custom-file-input" id="images" name="image" multiple>
+                            <label class="custom-file-label" for="images" aria-describedby="inputGroupFileAddon02">Add Image(s)</label>
+                          </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label class="form-label" for="title">Title</label>
-                            <input class="form-control border-0 shadow" type="text" id="title" name="recipe[title]" placeholder="Insert title" required>
+                            <input class="form-control shadow" type="text" id="title" name="recipe[title]" placeholder="Insert title" required>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label class="form-label" for="style">Type of Cuisine</label>
-                            <input class="form-control border-0 shadow" type="text" id="style" name="recipe[style]" placeholder="American, Italian, etc" required>
+                            <input class="form-control shadow" type="text" id="style" name="recipe[style]" placeholder="American, Italian, etc" required>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label class="form-label" for="duration">Cook-Time</label>
-                            <input class="form-control border-0 shadow" type="text" id="duration" name="recipe[duration]" placeholder="30, 60, etc" required>
+                            <input class="form-control shadow" type="text" id="duration" name="recipe[duration]" placeholder="30, 60, etc" required>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label class="form-label" for="keto_friendly">Keto-Friendly</label>
-                            <input class="form-control border-0 shadow" type="text" id="keto_friendly" name="recipe[keto_friendly]" placeholder="Yes or No" required>
+                            <input class="form-control shadow" type="text" id="keto_friendly" name="recipe[keto_friendly]" placeholder="Yes or No" required>
                         </div>
                         <div class="col-sm-12  mb-3">
                             <label class="form-label" for="Ingredients">Ingredients</label>
-                            <textarea class="form-control border-0 shadow" type="text" id="ingredients" name="recipe[ingredients]" placeholder="List your ingredients" required></textarea>
+                            <textarea class="form-control shadow" type="text" id="ingredients" name="recipe[ingredients]" placeholder="List your ingredients" required></textarea>
                         </div>
                         <div class="col-sm-12  mb-4">
                             <label class="form-label" for="instructions">Instructions</label>
-                            <textarea class="form-control border-0 shadow" type="text" id="instructions" name="recipe[instructions]" placeholder="Type insructions here" required></textarea>
+                            <textarea class="form-control shadow" type="text" id="instructions" name="recipe[instructions]" placeholder="Type insructions here" required></textarea>
                         </div>
                     </div>
                     <div class="d-flex flex-md-row flex-column align-items-center">
