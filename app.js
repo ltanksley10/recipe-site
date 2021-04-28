@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();   
-}
+require('dotenv').config();   
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -20,10 +18,13 @@ const userRoutes = require('./routes/users');
 const recipes = require('./routes/recipes');
 const reviews = require('./routes/reviews');
 
+const MongoStore = require('connect-mongo')(session);
+
 const dbUrl = process.env.EXPRESS_APP_DATABASEURL;
+const atlasUrl = process.env.DB_URL;
 
 //connect to mongoose
-mongoose.connect(dbUrl, {
+mongoose.connect(atlasUrl || dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -49,6 +50,34 @@ app.use(express.urlencoded({extended: true}));
 //method override to make express think a put request is a post request
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const secret = process.env.SECRET;
+
+//cookies
+const store = new MongoStore({
+    url: atlasUrl,
+    secret: secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function(e) {
+    console.log("Session store error", e);
+});
+
+const sessionConfig = {
+    store,
+    name: 'sesh',
+    secret: secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+};
+app.use(session(sessionConfig));
 
 //sanitize
 app.use(mongoSanitize());
@@ -83,27 +112,13 @@ app.use(helmet.contentSecurityPolicy({
             "'self'",
             "blob:",
             "data:",
-            "https://res.cloudinary.com/YOURNAME/",
+            "https://res.cloudinary.com/dogcjimu5/",
             "https://images.unsplash.com/"
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
     },
 }));
 
-//cookies
-const sessionConfig = {
-    name: 'sesh',
-    secret: 'thisshouldbeabettersecret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        // secure: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-}
-app.use(session(sessionConfig));
 
 //passport
 app.use(passport.initialize());
@@ -145,6 +160,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(8080, () => {
-    console.log('Serving on port 8080')
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 });
