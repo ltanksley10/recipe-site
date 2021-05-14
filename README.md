@@ -10,3 +10,13 @@ a site to share your favorite recipes and pictures of your food. I really enjoye
 project and learned a lot about developing with node, express and mongo to build 
 full-stack web apps. To make the site my own I also implemented Bootstrap's masonry 
 layout from Bootstrap 4. 
+
+### Demo
+https://foodiegram.loritanksley.com
+
+### Technologies
+* Node.js
+* Express 4.17.1
+* Cloudinary 1.25.1
+* Mongoose 5.12.3
+* MongoDB Atlas
