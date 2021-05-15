@@ -2,45 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="description" content="Foodiegram is a site to share all of your favorite recipes and photos of your favorite meals." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <title>Foodiegram</title>
-        <style>
-            img {
-                border-radius: 2px;
-            }
-            .show-img {
-                object-fit: cover;
-                /*object-position: 0 25%;*/
-                max-height: 90vh;
-                width: auto;
-            }
-            #ingredient-list, #instructions {
-                white-space: pre-line;
-            }
-            @media (min-width: 576px) {
-                .card-columns {
-                    column-count: 2;
-                }
-            }
-            
-            @media (min-width: 768px) {
-                .card-columns {
-                    column-count: 2;
-                }
-            }
-            
-            @media (min-width: 992px) {
-                .card-columns {
-                    column-count: 3;
-                }
-            }
-            
-            @media (min-width: 1200px) {
-                .card-columns {
-                    column-count: 4;
-                }
-        </style>
+        <link rel="stylesheet" href="../stylesheets/index.css" type="text/css">
     </head>
     <body class="d-flex flex-column vh-100">
         <%- include('../partials/navbar') %>

@@ -1,9 +1,27 @@
 const Recipe = require('../models/recipe');
 const { cloudinary } = require('../cloudinary');
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
 module.exports.index = async(req, res) => {
-    const recipes = await Recipe.find({});
-    res.render('recipes/index', {recipes});
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Recipe.find({$or:[{title: regex}, {style: regex}]}, 
+        function(err, searchResults) {
+            if (err) {
+                req.flash('error', 'Something went wrong.');
+            } else if (searchResults.length === 0) {
+                req.flash('error', 'Sorry, no recipes match your query. Please try again.');
+                return res.redirect('/recipes');
+            }
+            res.render('recipes/index', {recipes: searchResults, page: 'recipes'});
+        });
+    } else {
+        const recipes = await Recipe.find({});
+        res.render('recipes/index', {recipes});
+    }
 };
 
 module.exports.renderNewForm = (req, res) => {

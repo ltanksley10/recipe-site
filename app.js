@@ -150,6 +150,8 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+
+//Error paths
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });
@@ -160,6 +162,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
+//connect to server
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {

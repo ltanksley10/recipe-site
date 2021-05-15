@@ -5,21 +5,36 @@
             <div class="card-body">
                 <h1 class="text-center">Create an Account</h1>
                 <form action="/register" method="POST" class="validated-form" novalidate>
+                    <!--<div class="input-group mb-3">-->
+                    <!--    <div class="custom-file shadow">-->
+                    <!--        <input type="file" class="custom-file-input" id="image" name="image" >-->
+                    <!--        <label class="custom-file-label text-muted" for="image" aria-describedby="inputGroupFileAddon02">profile image (optional)</label>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                     <div class="mb-3">
                         <label class="form-label" for="username">Username</label>
-                        <input class="form-control shadow" type="text" id="username" name="username" required>
+                        <input class="form-control shadow" type="text" id="username" name="username" placeholder="required" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input class="form-control shadow" type="text" id="firstName" name="firstName" placeholder="optional">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input class="form-control shadow" type="text" id="lastName" name="lastName" placeholder="optional">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="email">Email</label>
-                        <input class="form-control shadow" type="text" id="email" name="email" required>
+                        <input class="form-control shadow" type="email" id="email" name="email" placeholder="required" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Password</label>
-                        <input class="form-control shadow" type="password" id="password" name="password" required>
+                        <input class="form-control shadow" type="password" id="password" name="password" placeholder="required" required>
                     </div>
                     <button class="btn btn-primary col-lg-12 mt-2 mb-2 shadow">Sign Up</button>
                 </form>
             </div>
         </div>
+        <p class="text-center text-muted mt-5">*This site was built as a demo project - please do not post or share any personal information.*</p>
     </div>
 </div>

@@ -3,6 +3,8 @@ const router = express.Router();
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
+const User = require('../models/user');
+const Recipe = require('../models/recipe');
 
 //render register form and register route
 router.route('/register')
@@ -16,5 +18,19 @@ router.route('/login')
     
 //logout route
 router.get('/logout', users.logout);
+
+router.get("/users/:id", users.renderProfile);
+
+// forgot password 
+router.route('/forgot')
+    .get(users.renderForgot)
+    .post(users.forgot);
+
+router.route('/reset/:token')
+    .get(users.resetError)
+    .post(users.resetProcess);
+
+// USER PROFILE
+router.get('/users/:id', users.loginUser);
 
 module.exports = router;

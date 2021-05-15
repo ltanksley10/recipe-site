@@ -47,7 +47,7 @@
               <li class="list-group-item" id="instructions"><strong>Instructions:</strong><br /><%= recipe.instructions %></li>
             </ul>
             <div class="card-footer">
-              <p class="card-text text-muted">Created by: <%= recipe.creator.username %></p>
+              <p class="card-text text-muted">Created by: <a href="/users/<%= recipe.creator.id %>"><%= recipe.creator.username %></a></p>
             </div>
           </div>
       </div>

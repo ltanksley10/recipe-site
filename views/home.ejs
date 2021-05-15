@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="robots" content="nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-        <meta name="description" content="A site to share photos of your favorite meals and recipes with the world." />
+        <meta name="description" content="Foodiegram is a site to share all of your favorite recipes and photos of your favorite meals." />
         <link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
         <link rel="icon" href="#" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -16,12 +16,11 @@
                 <div>
                     <h3 class="float-md-left mb-0">Foodiegram</h3>
                     <nav class="nav nav-masthead justify-content-center float-md-right">
-                        <a class="nav-link" href="/recipes">Recipes</a>
                         <% if(!currentUser) { %>
-                        <a class="nav-link" href="/login">Login</a>
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link ml-0" href="/login">Login</a>
+                        <a class="nav-link ml-0" href="/register">Register</a>
                         <% } else { %>
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <a class="nav-link ml-0" href="/logout">Logout</a>
                         <% } %>
                     </nav>
                 </div>

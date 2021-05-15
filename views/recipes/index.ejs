@@ -1,11 +1,21 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container-fluid mx-auto mb-2">
-    <div class="d-flex justify-content-center align-items-center mb-2">
-        <h1>All Recipes</h1>
+<div class="container-fluid mx-auto mb-2 index-container">
+    <div class="d-flex flex-column justify-content-center align-items-center mb-2">
+        <div>
+            <h2>All Recipes</h2>
+        </div>
+        <div class="search-index">
+            <form action"/recipes" method="GET" class="form-inline">
+              <div class="form-group d-flex align-items-center justify-content-center">
+                  <input type="text" name="search" placeholder="Search all recipes.." class="form-control-sm border-1 pr-0">
+                  <input type="submit" value="Search" class="ml-1 btn btn-sm btn-dark">
+              </div>
+            </form>
+        </div>
     </div>
     <div>
-        <div class="container-fluid">
+        <div class="container-fluid index-container">
             <div class="card-columns">
                 <% for (let recipe of recipes) {%>
                     <div class="card shadow mb-3 text-center">

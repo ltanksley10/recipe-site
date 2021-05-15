@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+
+
+<div class="container-fluid index-container">
+    <% if (user.firstName || user.lastName) { %>
+        <h1 class="text-center"><%= user.firstName + " " + user.lastName %></h1>
+        <h3 class="text-center"><%= user.username %>'s recipes:</h3>
+    <% } else { %>
+        <h3 class="text-center"><%= user.username %>'s recipes:</h3>
+    <% } %>
+    <% if (recipes.length < 1) { %>
+        <h5 class="text-muted text-center mt-5">No recipes yet</h5>
+    <% } else { %>
+        <div class="card-columns">
+            <% recipes.forEach(function(recipe) { %>
+                <div class="card shadow mb-3 text-center">
+                    <div>
+                        <img class="img-fluid" alt="" src="<%=recipe.images[0].url%>">
+                    </div>
+                    <div>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=recipe.title%></h5>
+                            <p class="card-text">
+                                Cook-Time: <%=recipe.duration%> min
+                            </p>
+                            <a class="btn btn-sm btn-primary" href="/recipes/<%=recipe.id%>">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</div>

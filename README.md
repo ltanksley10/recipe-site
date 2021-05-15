@@ -2,7 +2,7 @@
 
 A dynamic site built with Node.js, Express and MongoDB Atlas.
 
-## Introduction
+## Description
 
 This site was built as a code along project from Colt Steele's web developer bootcamp.
 I decided to branch off from the real Yelpcamp project and build my own - Foodiegram -
@@ -15,6 +15,7 @@ layout from Bootstrap 4.
 https://foodiegram.loritanksley.com
 
 ### Technologies
+* Bootstrap 4.5
 * Node.js
 * Express 4.17.1
 * Cloudinary 1.25.1
